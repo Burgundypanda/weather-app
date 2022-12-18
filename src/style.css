@@ -57,6 +57,7 @@ form {
 .btn-primary {
   background: rgb(245, 176, 245);
   border: none;
+  width: 60%;
   border-radius: 10px;
   font-weight: 700;
   height: 50px;
@@ -71,7 +72,7 @@ form {
   height: 50px;
   border-radius: 10px;
   padding: 5px 0;
-  max-width: 85%;
+  width: 20%;
 }
 
 .weather-app {
@@ -96,7 +97,7 @@ form {
 }
 
 .weather-temperature strong {
-  font-size: 60px;
+  font-size: 80px;
   font-weight: 400;
   line-height: 1;
 }

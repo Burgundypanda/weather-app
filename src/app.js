@@ -111,6 +111,20 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function showPosition(position) {
+  console.log(position);
+  let apiKey = "97f8e93f00107773f88eafd933ce86b7";
+  let long = position.coords.longitude;
+  let lat = position.coords.latitude;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showCityWeather);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
 function displayCelsiusTemperature(event) {
   event.preventDefault();
   celsiusLink.classList.add("active");
@@ -146,5 +160,8 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let currentButton = document.querySelector(".currentbtn");
+currentButton.addEventListener("click", getCurrentLocation);
 
 search("London");
