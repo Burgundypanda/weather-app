@@ -1,4 +1,4 @@
-//format date
+//format date and time
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -24,7 +24,7 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-//City search
+//City search bar
 
 function search(city) {
   let apiKey = "97f8e93f00107773f88eafd933ce86b7";
@@ -64,7 +64,7 @@ function displayForecast(response) {
                 <img
                   src="http://openweathermap.org/img/wn/${
                     forecastDay.weather[0].icon
-                  }@2x.png
+                  }@2x.png"
                   width="60"
                 />
                 <div class="weather-forecast-temperature">
@@ -124,9 +124,25 @@ function showCityWeather(response) {
   let cityElement = document.querySelector("#city");
   let temp = Math.round(response.data.main.temp);
   let tempElement = document.querySelector("#temperature");
+  let descriptionElement = document.querySelector("#weather-description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+
   cityElement.innerHTML = city;
-  tempElement.innerHTML = `${temp}°`;
-  console.log(response.data.main.temp);
+  tempElement.innerHTML = `${temp}`;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windSpeedElement.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function showPosition(position) {

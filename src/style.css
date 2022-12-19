@@ -28,7 +28,7 @@ li {
   line-height: 20px;
 }
 
-li:first-letter {
+li::first-letter {
   text-transform: capitalize;
 }
 
@@ -103,7 +103,7 @@ form {
 }
 
 .d-flex {
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 .weather-temperature a {
@@ -111,12 +111,12 @@ form {
 }
 
 .weather-app li strong {
-  color: rgb(245, 176, 245);
+  color: rgb(210, 107, 236);
 }
 
 .weather-app footer {
   color: #878787;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -135,7 +135,7 @@ form {
 }
 
 .weather-forecast {
-  margin: 50px 0;
+  margin: 60px 0;
   text-align: center;
   color: black;
   border-bottom: 1px solid #f0f6fc;
@@ -152,7 +152,7 @@ form {
 }
 
 .weather-forecast-temperature {
-  color: rgb(245, 176, 245);
+  color: rgb(210, 107, 236);
   font-weight: 600;
   font-size: 16px;
 }
