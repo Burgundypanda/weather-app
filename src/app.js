@@ -111,6 +111,16 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function showCityWeather(response) {
+  let city = response.data.name;
+  let cityElement = document.querySelector("#city");
+  let temp = Math.round(response.data.main.temp);
+  let tempElement = document.querySelector("#temperature");
+  cityElement.innerHTML = city;
+  tempElement.innerHTML = `${temp}°`;
+  console.log(response.data.main.temp);
+}
+
 function showPosition(position) {
   console.log(position);
   let apiKey = "97f8e93f00107773f88eafd933ce86b7";
