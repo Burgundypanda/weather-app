@@ -1,3 +1,5 @@
+//format date
+
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -21,6 +23,22 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+
+//City search
+
+function search(city) {
+  let apiKey = "97f8e93f00107773f88eafd933ce86b7";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+//Display weather forecast
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -99,17 +117,7 @@ function displayTemperature(response) {
   getForecast(response.data.coord);
 }
 
-function search(city) {
-  let apiKey = "97f8e93f00107773f88eafd933ce86b7";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  search(cityInputElement.value);
-}
+//Current location button
 
 function showCityWeather(response) {
   let city = response.data.name;
@@ -134,6 +142,11 @@ function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showPosition);
 }
+
+let currentButton = document.querySelector(".currentbtn");
+currentButton.addEventListener("click", getCurrentLocation);
+
+//Display C°/F° temps
 
 function displayCelsiusTemperature(event) {
   event.preventDefault();
@@ -170,8 +183,5 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
-
-let currentButton = document.querySelector(".currentbtn");
-currentButton.addEventListener("click", getCurrentLocation);
 
 search("London");
